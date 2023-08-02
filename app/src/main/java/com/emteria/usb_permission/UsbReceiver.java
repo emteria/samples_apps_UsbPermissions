@@ -1,4 +1,4 @@
-package com.emteria.usbpermissions;
+package com.emteria.usb_permission;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

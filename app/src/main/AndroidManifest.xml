@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.emteria.usbpermissions">
-
-    <uses-feature android:name="android.hardware.usb.host" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-
-        <activity android:name=".MainActivity" android:directBootAware="true">
+        android:theme="@style/Theme.USBPermission">
+        <activity
+            android:name=".MainActivity"
+            android:directBootAware="true"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -25,7 +28,10 @@
                 android:resource="@xml/device_filter" />
         </activity>
 
-        <receiver android:name=".UsbReceiver" android:directBootAware="true">
+        <receiver
+            android:name=".UsbReceiver"
+            android:directBootAware="true"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.emteria.usbpermissions.USB_PERMISSION" />
             </intent-filter>

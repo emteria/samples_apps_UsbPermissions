@@ -1,4 +1,6 @@
-package com.emteria.usbpermissions;
+package com.emteria.usb_permission;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.PendingIntent;
 import android.content.Context;
@@ -6,7 +8,6 @@ import android.content.Intent;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import java.util.HashMap;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity
         // If nothing happens in your setup, make sure you don't have too many USB devices connected
         //
 
-        PendingIntent permissionIntent = PendingIntent.getBroadcast(this, 0, new Intent(ACTION_USB_PERMISSION), 0);
+        PendingIntent permissionIntent = PendingIntent.getBroadcast(this, 0, new Intent(ACTION_USB_PERMISSION), PendingIntent.FLAG_IMMUTABLE);
         UsbDevice device = intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
         if (device == null)
         {
@@ -48,15 +49,13 @@ public class MainActivity extends AppCompatActivity
             HashMap<String, UsbDevice> deviceList = manager.getDeviceList();
             for (UsbDevice usbDevice : deviceList.values())
             {
-                int deviceId = usbDevice.getDeviceId();
                 int vendorId = usbDevice.getVendorId();
+                int productId = usbDevice.getProductId();
                 String name = usbDevice.getDeviceName();
-                int protocol = usbDevice.getDeviceProtocol();
 
-                Log.e("UsbPermissions", "deviceId: " + deviceId);
                 Log.e("UsbPermissions", "vendorId: " + vendorId);
+                Log.e("UsbPermissions", "productId: " + productId);
                 Log.e("UsbPermissions", "name: " + name);
-                Log.e("UsbPermissions", "protocol: " + protocol);
 
                 Log.e("UsbPermissions", "Request permission");
                 manager.requestPermission(usbDevice, permissionIntent);

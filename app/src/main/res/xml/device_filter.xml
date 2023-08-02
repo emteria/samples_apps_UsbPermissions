@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- in hex: vendor id = 0b05 and product id = 17cb -->
-    <usb-device vendor-id="2821" product-id="6091" />
+    <usb-device vendor-id="3118" product-id="4116" />
 </resources>
